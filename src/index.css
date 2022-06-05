@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+body.noScroll {
+  /* position: fixed; */
+  overflow: hidden;
+  /* width: 100%; */
+}
+
+.noscrollbar {
+  scrollbar-width: 0;
+}
+.noscrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
