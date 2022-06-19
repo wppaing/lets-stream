@@ -18,7 +18,7 @@ export default function AlbumInfo() {
 
   useEffect(() => {
     axios
-      .get(`https://api-streamservice-ss.herokuapp.com/api/album?id=${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/album?id=${id}`)
       .then((response) => {
         setData(response.data);
       })
@@ -30,7 +30,7 @@ export default function AlbumInfo() {
     // set albumdata to currentData for skip prev functionalities
     dispatch(setcurrentdata(data.tracks));
     axios
-      .get(`https://api-streamservice-ss.herokuapp.com/api/song?id=${item.id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/song?id=${item.id}`)
       .then((response) => {
         dispatch(setcurrentsong(response.data));
       })

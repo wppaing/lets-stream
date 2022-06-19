@@ -14,12 +14,17 @@ export default function RightControl({ audioRef }) {
 
   return (
     <div className={`grid grid-cols-[_1fr_auto] gap-4 items-center text-right`}>
-      <div className="flex items-center justify-end gap-2">
+      <div className="flex items-center justify-end gap-2 opacity-70 hover:opacity-100">
         <FontAwesomeIcon icon={faVolumeLow} />
         <VolumeControl audioRef={audioRef} />
       </div>
       <div className="hover:cursor-pointer" title="Lyrics">
-        <p onClick={setShowLyrics} className={`${showlrc && "text-accent"}`}>
+        <p
+          onClick={setShowLyrics}
+          className={`${
+            showlrc && "text-accent"
+          } transition-colors duration-300`}
+        >
           Lyrics
         </p>
       </div>

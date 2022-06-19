@@ -9,7 +9,7 @@ export default function HomePage() {
 
   useEffect(() => {
     axios
-      .get("https://api-streamservice-ss.herokuapp.com/api/homepage/artists")
+      .get(`${process.env.REACT_APP_BASE_URL}/homepage/artists`)
       .then((response) => {
         setArtists(response.data);
       })
@@ -17,9 +17,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <div className={`container mx-auto`}>
       <div className="mb-4 font-medium">
-        <h3>Random artists in our database</h3>
+        <h3 className="px-4">Verified Artists</h3>
       </div>
       <div className="flex gap-4 overflow-x-scroll noscrollbar">
         {artists &&
@@ -39,6 +39,6 @@ export default function HomePage() {
             ))
           )}
       </div>
-    </>
+    </div>
   );
 }

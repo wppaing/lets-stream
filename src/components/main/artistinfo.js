@@ -11,7 +11,7 @@ export default function ArtistInfo() {
 
   useEffect(() => {
     axios
-      .get(`https://api-streamservice-ss.herokuapp.com/api/artist?id=${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/artist?id=${id}`)
       .then((response) => {
         setData(response.data);
       })

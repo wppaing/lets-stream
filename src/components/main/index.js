@@ -36,7 +36,7 @@ export default function Main({ audioRef }) {
     if (currentSong) {
       const id = currentData[currentIndex].id;
       axios
-        .get(`https://api-streamservice-ss.herokuapp.com/api/song?id=${id}`)
+        .get(`${process.env.REACT_APP_BASE_URL}/song?id=${id}`)
         .then((response) => {
           dispatch(setcurrentsong(response.data));
         })
@@ -55,6 +55,9 @@ export default function Main({ audioRef }) {
 
   const songEndHandler = () => {
     dispatch(setcurrentindex((currentIndex + 1) % currentData.length));
+    if (!audioRef.current.playing) {
+      dispatch(setisplaying(false));
+    }
   };
 
   const onAudioProgress = () => {

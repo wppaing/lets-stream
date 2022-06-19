@@ -59,9 +59,7 @@ const Nav = () => {
 
   const search = async (keyword) => {
     axios
-      .get(
-        `https://api-streamservice-ss.herokuapp.com/search?keyword=${keyword}`
-      )
+      .get(`${process.env.REACT_APP_BASE_URL}/search?keyword=${keyword}`)
       .then((response) => {
         setOptions(response.data);
       })
@@ -90,9 +88,14 @@ const Nav = () => {
     dispatch(setcurrentdata([]));
     dispatch(setcurrentindex(0));
     axios
-      .get(`https://api-streamservice-ss.herokuapp.com/api/song?id=${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/song?id=${id}`)
       .then((response) => dispatch(setcurrentsong(response.data)))
       .catch((error) => console.log(error));
+  };
+
+  const goHome = (e) => {
+    e.preventDefault();
+    navigate("/");
   };
 
   return (
@@ -106,8 +109,8 @@ const Nav = () => {
             <FontAwesomeIcon icon={faBars} />
           </button>
           <a
-            href="#"
-            onClick={() => navigate("/")}
+            href="/"
+            onClick={goHome}
             className="font-medium text-accent text-xl whitespace-nowrap"
           >
             Let's Stream
@@ -122,13 +125,13 @@ const Nav = () => {
           }}
           className={`${
             showinput ? `p-2 bg-light dark:bg-dark` : "py-2"
-          } sm:py-0 inset-0  sm:px-4 space-x-2 sm:space-x-0 flex items-center justify-center sm:rounded-full mx-auto max-w-xl sm:bg-lightGray sm:dark:bg-grayishDark`}
+          } sm:py-0 inset-0 space-x-2 sm:space-x-0 flex items-center justify-center sm:rounded-full mx-auto max-w-xl sm:bg-lightGray sm:dark:bg-grayishDark`}
           ref={inputRef}
         >
           <input
             className={`${
               !showinput && "hidden"
-            } p-1.5 px-4 sm:px-2 sm:block w-full text-sm focus-visible:outline-none rounded-full bg-lightGray dark:bg-grayishDark`}
+            } p-1.5 px-4 sm:block w-full text-sm focus-visible:outline-[#e7e7e76b] dark:focus-visible:outline-none rounded-full bg-lightGray dark:bg-grayishDark`}
             type="text"
             placeholder="Search"
             value={val}
