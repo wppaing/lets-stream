@@ -54,7 +54,9 @@ export default function Main({ audioRef }) {
   };
 
   const songEndHandler = () => {
-    dispatch(setcurrentindex((currentIndex + 1) % currentData.length));
+    if (currentData.length > 0) {
+      dispatch(setcurrentindex((currentIndex + 1) % currentData.length));
+    }
     if (!audioRef.current.playing) {
       dispatch(setisplaying(false));
     }

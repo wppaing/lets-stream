@@ -15,6 +15,7 @@ export default function AlbumInfo() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState();
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
     axios
@@ -43,12 +44,17 @@ export default function AlbumInfo() {
         <Wrapper bgImage={getImage(data.images, 100)}>
           <div className="container relative max-w-5xl mx-auto p-0 sm:p-6  space-y-6">
             <div className="flex flex-col sm:flex-row sm:space-x-6 items-center sm:items-start space-y-6 text-center sm:text-left">
-              <div>
+              <div className="w-[150px] h-[150px]">
                 <img
                   className="w-[150px]"
                   src={getImage(data.images, 300)}
                   alt={data.name}
+                  onLoad={() => setImgLoaded(true)}
                 />
+                <div
+                  className="w-[150px] h-[150px] bg-light dark:bg-grayishDark"
+                  style={{ display: imgLoaded ? "none" : "block" }}
+                ></div>
               </div>
               <div className="space-y-3">
                 <p className="text-lg font-medium">{data.name}</p>
