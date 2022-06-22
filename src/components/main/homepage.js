@@ -36,7 +36,7 @@ export default function HomePage() {
 
   const directPlayer = (id) => {
     dispatch(setcurrentdata([]));
-    dispatch(setcurrentindex(0));
+    // dispatch(setcurrentindex(0));
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/song?id=${id}`)
       .then((response) => dispatch(setcurrentsong(response.data)))
