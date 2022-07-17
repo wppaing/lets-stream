@@ -21,6 +21,7 @@ export default function AlbumInfo() {
 
   const fetcher = async (url) =>
     axios.get(url).then((res) => {
+      document.title = `StreamMM - ${res.data.name}`;
       setAlbumInfo(res.data);
       return res.data;
     });

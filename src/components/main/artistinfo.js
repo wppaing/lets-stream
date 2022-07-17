@@ -5,8 +5,6 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getImage } from "../../utils/util";
 
-const fetcher = async (url) => axios.get(url).then((res) => res.data);
-
 export default function ArtistInfo() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -14,7 +12,11 @@ export default function ArtistInfo() {
 
   const { data, error } = useSWR(
     `${process.env.REACT_APP_BASE_URL}/artist?id=${id}`,
-    fetcher
+    async (url) =>
+      axios.get(url).then((res) => {
+        document.title = `StreamMM - ${res.data.artist_info.name}`;
+        return res.data;
+      })
   );
 
   const itemClickHandler = (item) => {

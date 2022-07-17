@@ -1,6 +1,6 @@
 import useSwr from "swr";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getImage } from "../../utils/util";
@@ -13,6 +13,10 @@ export default function HomePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [imgLoaded, setImgLoaded] = useState(false);
+
+  useEffect(() => {
+    document.title = `Let's Stream : Stream your favourite Myanmar music`;
+  }, []);
 
   const fetcher = async (url) => axios.get(url).then((res) => res.data);
 
